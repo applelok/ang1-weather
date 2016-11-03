@@ -32,5 +32,11 @@ body {
   #weather-header #current-deg {
     font-size: 140px; }
 
+#weather-forecast #forecast-grid {
+  width: 300px;
+  height: 200px;
+  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.54); }
+
 #weather-content {
   padding: 20px; }

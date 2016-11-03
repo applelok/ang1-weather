@@ -1,6 +1,6 @@
-var items = angular.module('items', []);
-var text = angular.module('text', []);
-var app = angular.module('app', ['items', 'text', 'ngMaterial']);
+var weatherHeader = angular.module('weatherHeader', []);
+var weatherForecast = angular.module('weatherForecast', []);
+var app = angular.module('app', ['weatherHeader', 'weatherForecast', 'ngMaterial']);
 
 app.config(function($provide){
     console.log('config');
@@ -75,13 +75,14 @@ app.config(function($provide){
     
 // });
 
-text.controller('TextController', function ($scope) {
-    $scope.text = {
-        message: 'Welcome!!'
-    };
+weatherForecast.controller('WeatherForecastController', function ($scope, $q, weatherInfoService) {
+  weatherInfoService.getApiContentCache();
+  $scope.$on('weatherInfoData', function(event, result) {
+    var forecast = result.forecast;    
+  });
 });
 
-items.controller('WeatherHeaderController', function ($scope, $q, weatherInfoService) {
+weatherHeader.controller('WeatherHeaderController', function ($scope, $q, weatherInfoService) {
   weatherInfoService.getApiContentCache();
   $scope.$on('weatherInfoData', function(event, result) {
     console.log("got Data");
