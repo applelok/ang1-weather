@@ -1,0 +1,58 @@
+body{
+	background: url('../images/bg/moon.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+	color: white;
+	background-size: cover;
+	
+}
+
+//variables
+$headerWeatherFontSize: 22px;
+
+//Common part
+.bold{
+	font-weight: bold;
+}
+
+.FL{
+	float:left;
+}
+
+.clearfix{
+	clear: both;
+}
+
+//Weather header
+#weather-header{
+	text-decoration: none;
+	h1, h2, h4{
+		margin: 0px;
+	}
+
+	#weather-desc{
+		font-size: $headerWeatherFontSize;
+	}
+
+	#today-deg{
+		width: 100%;
+		height: 30px;
+		font-size: $headerWeatherFontSize;
+		span{
+			margin-right: 30px;
+		}
+		i{
+			padding-left: 10px;
+			padding-right: 10px;
+
+		}
+	}
+
+	#current-deg{
+		font-size: 140px;
+	}
+}
+
+#weather-content{
+	padding: 20px;
+}
