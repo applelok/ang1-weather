@@ -34,9 +34,12 @@ body {
 
 #weather-forecast #forecast-grid {
   width: 300px;
-  height: 200px;
+  min-height: 200px;
   background-color: #000;
   background-color: rgba(0, 0, 0, 0.54); }
+  #weather-forecast #forecast-grid .dailyForecast {
+    height: 32px;
+    width: 100%; }
 
 #weather-content {
   padding: 20px; }

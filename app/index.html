@@ -65,7 +65,10 @@
       <hr/>
       <div id="weather-forecast" ng-controller='WeatherForecastController'>
         <div id="forecast-grid">
-
+          <div class="dailyForecast" ng-repeat="dayForecast in forecastingList">
+          <!-- <img src="{{dayForecast.img}}"/> -->
+          <span>{{dayForecast.weekday}}</span>
+          </div>
         </div>
      <!--  Enter a text::
           <input ng-model='text.message'>

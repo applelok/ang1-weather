@@ -78,7 +78,17 @@ app.config(function($provide){
 weatherForecast.controller('WeatherForecastController', function ($scope, $q, weatherInfoService) {
   weatherInfoService.getApiContentCache();
   $scope.$on('weatherInfoData', function(event, result) {
-    var forecast = result.forecast;    
+    var daysForecast = result.forecast;  
+    var forecastImg = [];
+    angular.forEach(daysForecast, function(dailyForecast){
+      var day = dailyForecast.day;
+      var img = getWeatherIconByText(text);
+      var weekday = getWeekdayNameByShortForm(day);
+      forecastImg.push({'img': img});
+    });
+
+    var forecastList = angular.merge({}, daysForecast, forecastImg);
+    $scope.forecastingList = forecastList;
   });
 });
 
@@ -111,3 +121,37 @@ weatherHeader.controller('WeatherHeaderController', function ($scope, $q, weathe
         price: 10.2
     }];
 });
+
+function getWeatherIconByText(text){
+  switch(text){
+      case "Mostly Sunny":
+        img = "../../images/icons/sun.png";
+        break;
+      case "Mostly Cloudy":
+        img = "../../images/icons/clouds.png";
+        break;
+      case "Partly Cloudy":
+        img = "../../images/icons/partial_sunny.png";
+        break;
+      default:
+        img = "../../images/icons/sun.png";
+        break;
+    }
+}
+
+function getWeatherIconByText(dayText){
+  switch(dayText){
+    case "Sun":
+      return "Sunday";
+    case "Mon":
+      return "Tuesday";
+    case "Wed":
+      return "Wednesday";
+    case "Thu":
+      return "Thursday";
+    case "Fri":
+      return "Friday";
+    case "Sat":
+      return "Saturday";
+  } 
+}
