@@ -1,6 +1,8 @@
 var weatherHeader = angular.module('weatherHeader', []);
 var weatherForecast = angular.module('weatherForecast', []);
-var app = angular.module('app', ['weatherHeader', 'weatherForecast', 'ngMaterial']);
+var weatherRetrieveInfo = angular.module('weatherRetrieveInfo', []);
+var navBar = angular.module('navBar', []);
+var app = angular.module('app', ['weatherHeader', 'weatherForecast', 'weatherRetrieveInfo', 'navBar', 'ngMaterial']);
 
 app.config(function($provide){
     console.log('config');
@@ -43,6 +45,7 @@ app.config(function($provide){
           console.log(response);
           var data = response.data.query.results.channel.item;
           $rootScope.$broadcast('weatherInfoData', data);
+          $rootScope.$broadcast('retrieveInfo', response.data.query.created);
           cache.put(cacheId, response.data);
           deferred.resolve(response.results);
         }, function(response) {
@@ -75,6 +78,11 @@ app.config(function($provide){
     
 // });
 
+navBar.controller('navBarController', function($scope){
+  $scope.refresh = function(){
+    location.reload();
+  };
+});
 weatherForecast.controller('WeatherForecastController', function ($scope, $q, weatherInfoService) {
   weatherInfoService.getApiContentCache();
   $scope.$on('weatherInfoData', function(event, result) {
@@ -104,27 +112,23 @@ weatherHeader.controller('WeatherHeaderController', function ($scope, $q, weathe
     console.log(todayCondition);
 
     $scope.weatherDesc = condition.text;
+    $scope.weatherImg = getWeatherIconByText(condition.text);
     $scope.highestDeg = todayCondition.high;
     $scope.lowestDeg = todayCondition.low;
     $scope.currentDeg = condition.temp;
   });
    
-    $scope.items = [{
-        title: 'Pencil',
-        quantity: 8,
-        price: 4.2
-    }, {
-        title: 'Pen',
-        quantity: 2,
-        price: 5.2
-    }, {
-        title: 'Watch',
-        quantity: 3,
-        price: 10.2
-    }];
 });
 
+weatherForecast.controller('WeatherRetrieveInfoController', function ($scope, $q, weatherInfoService) {
+  weatherInfoService.getApiContentCache();
+  $scope.$on('retrieveInfo', function(event, result) {
+    var m = moment(result);
+    $scope.infoLastRetrieve = m.format('LLL');
+  });
+});
 function getWeatherIconByText(text){
+  var img = "";
   switch(text){
       case "Mostly Sunny":
         img = "../../images/icons/sun.png";
@@ -138,7 +142,8 @@ function getWeatherIconByText(text){
       default:
         img = "../../images/icons/sun.png";
         break;
-    }
+  }
+  return img;
 }
 
 function getWeekdayNameByShortForm(dayText){
@@ -147,7 +152,7 @@ function getWeekdayNameByShortForm(dayText){
       return "Sunday";
     case "Mon":
       return "Monday";
-    case "Tuesday":
+    case "Tue":
       return "Tuesday";
     case "Wed":
       return "Wednesday";

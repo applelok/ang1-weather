@@ -12,8 +12,8 @@
 </head>
 <body ng-app="app" ng-cloak>
 
-  <div>
-    <nav>
+  <div id="outer-wrapper">
+    <nav ng-controller="navBarController">
 
     <md-toolbar class="md-hue-2">
       <div class="md-toolbar-tools" style="background: black;">
@@ -22,14 +22,14 @@
           <!-- <md-icon md-svg-icon="img/icons/menu.svg"></md-icon> -->
         </md-button>
         <h2>
-          <span>Toolbar with Disabled/Enabled Icon Buttons</span>
+          <span></span>
         </h2>
         <span flex></span>
         <!-- <md-button class="md-icon-button" ng-click="someFunc()">
           
       </md-button> -->
-        <md-button class="md-icon-button" aria-label="Favorite">
-         <i class="material-icons" style="color: white;">favorite</i>
+        <md-button class="md-icon-button" aria-label="Favorite" ng-click="refresh()">
+         <i class="material-icons" style="color: white;">refresh</i>
           <!-- <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon> -->
         </md-button>
         <md-button class="md-icon-button" aria-label="More">
@@ -42,14 +42,22 @@
     </nav>
     <div id="weather-content">
       <div id="weather-header" ng-controller='WeatherHeaderController'>
-            <h1 class="md-display-2">Yuen Long</h1>
+            <h1 class="md-display-2 district">Yuen Long</h1>
             <h2 class="md-title">Hong Kong</h2>
-            <h4 id="weather-desc">{{weatherDesc}}</h4>
+            
+            <div id="weather-desc-outer" class="ib">
+              <div class="FL" id="currentWeatherImg">
+                <img src="{{::weatherImg}}"/>
+              </div>
+              <div id="weather-desc" class="ib">
+                <h4 id="">{{::weatherDesc}}</h4>
+              </div>
+            </div>
             <div id="today-deg" class="">
-            <i class="material-icons FL" style="color: white;">arrow_upward</i>
-              <span id="highest-deg" class="FL">{{highestDeg}}°</span>
-              <i class="material-icons FL" style="color: white;">arrow_downward</i>
-              <span id="lowest-deg" class="FL">{{lowestDeg}}°</span>
+              <i class="material-icons FL" style="color: white;">arrow_upward</i>
+                <span id="highest-deg" class="FL">{{highestDeg}}°</span>
+                <i class="material-icons FL" style="color: white;">arrow_downward</i>
+                <span id="lowest-deg" class="FL">{{lowestDeg}}°</span>
             </div>
           <h1 class="md-display-4" id="current-deg">{{currentDeg}}°</h1>
 
@@ -67,14 +75,31 @@
         <div id="forecast-grid">
           <div class="dailyForecast" ng-repeat="dayForecast in forecastingList">
           <!-- <img src="{{dayForecast.img}}"/> -->
-          <span>{{dayForecast.weekday}}</span>
+            <div class="weekday-name FL">
+              <span>{{::dayForecast.weekday}}</span>
+            </div>
+            <div class="weekday-image FL">
+              <img src="{{dayForecast.img}}"/>
+            </div>
+            <div class="weekday-high FL">
+              <span>{{::dayForecast.high}}°</span>
+            </div>
+            <div class="weekday-low FL">
+            <span>{{::dayForecast.low}}°</span>
+            </div>
+            <hr class="dotted-line"/>
           </div>
+
         </div>
      <!--  Enter a text::
           <input ng-model='text.message'>
            <h2>{{text.message}}, Journey just started!</h2>
  -->
       </div>
+
+    <div id="retrieve-info" ng-controller="WeatherRetrieveInfoController">
+      <h5>Last modified time: {{infoLastRetrieve}}</h5>
+    </div>
     </div>
 </div>
   <!-- Angular Material requires Angular.js Libraries -->
@@ -87,5 +112,6 @@
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/lib/momentjs/moment.js"></script>
 </body>
 </html>

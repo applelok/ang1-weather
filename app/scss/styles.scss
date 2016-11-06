@@ -1,10 +1,19 @@
 body{
 	background: url('../images/bg/moon.jpg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+   	background-repeat: no-repeat;
+    background-attachment: fixed;
 	color: white;
 	background-size: cover;
 	
+}
+
+//mixin
+@mixin MB($margin) {
+  margin-bottom: $margin;
+}
+
+@mixin MT($margin) {
+  margin-top: $margin;
 }
 
 //variables
@@ -19,8 +28,23 @@ $headerWeatherFontSize: 22px;
 	float:left;
 }
 
+.ib{
+	display: inline-block;
+}
+
+
+
 .clearfix{
 	clear: both;
+}
+
+.fullwidth{
+	width: 100%;
+}
+
+#outer-wrapper{
+	height: 100%;
+	overflow: auto;
 }
 
 //Weather header
@@ -29,20 +53,41 @@ $headerWeatherFontSize: 22px;
 	h1, h2, h4{
 		margin: 0px;
 	}
-
-	#weather-desc{
-		font-size: $headerWeatherFontSize;
+	.district{
+	    @include MB(-15px);
 	}
 
+	#weather-desc-outer{
+		@extend .fullwidth;
+		@include MB(5px);
+		@include MT(10px);
+		#currentWeatherImg{
+			img{
+				height: 32px;
+				width: 32px;
+			}
+
+		}
+
+		#weather-desc{
+			margin-left: 10px;
+			h4{
+				font-size: $headerWeatherFontSize;
+				line-height: 32px;
+			}
+		}
+
+	}
+	
 	#today-deg{
-		width: 100%;
+		@extend .fullwidth;
+		@include MB(10px);
 		height: 30px;
 		font-size: $headerWeatherFontSize;
 		span{
 			margin-right: 30px;
 		}
 		i{
-			padding-left: 10px;
 			padding-right: 10px;
 
 		}
@@ -56,13 +101,44 @@ $headerWeatherFontSize: 22px;
 
 #weather-forecast{
 	#forecast-grid{
-		width: 300px;
+		// width: 300px;
 		min-height:200px;
 	    background-color: #000;
     	background-color: rgba(0,0,0,.54);
+    	padding: 10px;
+		@media screen and (min-width: 360px) {
+		  width: 300px;
+		}
     	.dailyForecast{
     		height: 32px;
     		width: 100%;
+		    line-height: 32px;
+		    
+		   	.dotted-line{
+		   		float: center;
+		   		width: 100%;
+		   		border-top: 1px dotted #8c8b8b;
+		   	}
+    		.weekday-name{
+				width: 35%;
+    		}
+    		.weekday-image{
+				width: 25%;
+				margin: 0 auto;
+				text-align: center;
+    			img{
+	    			height: 30px;
+					width: 30px;
+				}
+    		}
+    		.weekday-high{
+				width: 15%;
+				padding-left: 10%;
+    		}
+    		.weekday-low{
+    			width: 15%;
+    			color: #a5d6ff;
+    		}
     	}
 	}
 }

@@ -1,7 +1,7 @@
 body {
   background: url("../images/bg/moon.jpg");
-  background-size: 100% 100%;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   color: white;
   background-size: cover; }
 
@@ -11,35 +11,78 @@ body {
 .FL {
   float: left; }
 
+.ib {
+  display: inline-block; }
+
 .clearfix {
   clear: both; }
+
+.fullwidth, #weather-header #weather-desc-outer, #weather-header #today-deg {
+  width: 100%; }
+
+#outer-wrapper {
+  height: 100%;
+  overflow: auto; }
 
 #weather-header {
   text-decoration: none; }
   #weather-header h1, #weather-header h2, #weather-header h4 {
     margin: 0px; }
-  #weather-header #weather-desc {
-    font-size: 22px; }
+  #weather-header .district {
+    margin-bottom: -15px; }
+  #weather-header #weather-desc-outer {
+    margin-bottom: 5px;
+    margin-top: 10px; }
+    #weather-header #weather-desc-outer #currentWeatherImg img {
+      height: 32px;
+      width: 32px; }
+    #weather-header #weather-desc-outer #weather-desc {
+      margin-left: 10px; }
+      #weather-header #weather-desc-outer #weather-desc h4 {
+        font-size: 22px;
+        line-height: 32px; }
   #weather-header #today-deg {
-    width: 100%;
+    margin-bottom: 10px;
     height: 30px;
     font-size: 22px; }
     #weather-header #today-deg span {
       margin-right: 30px; }
     #weather-header #today-deg i {
-      padding-left: 10px;
       padding-right: 10px; }
   #weather-header #current-deg {
     font-size: 140px; }
 
 #weather-forecast #forecast-grid {
-  width: 300px;
   min-height: 200px;
   background-color: #000;
-  background-color: rgba(0, 0, 0, 0.54); }
+  background-color: rgba(0, 0, 0, 0.54);
+  padding: 10px; }
+  @media screen and (min-width: 360px) {
+    #weather-forecast #forecast-grid {
+      width: 300px; } }
   #weather-forecast #forecast-grid .dailyForecast {
     height: 32px;
-    width: 100%; }
+    width: 100%;
+    line-height: 32px; }
+    #weather-forecast #forecast-grid .dailyForecast .dotted-line {
+      float: center;
+      width: 100%;
+      border-top: 1px dotted #8c8b8b; }
+    #weather-forecast #forecast-grid .dailyForecast .weekday-name {
+      width: 35%; }
+    #weather-forecast #forecast-grid .dailyForecast .weekday-image {
+      width: 25%;
+      margin: 0 auto;
+      text-align: center; }
+      #weather-forecast #forecast-grid .dailyForecast .weekday-image img {
+        height: 30px;
+        width: 30px; }
+    #weather-forecast #forecast-grid .dailyForecast .weekday-high {
+      width: 15%;
+      padding-left: 10%; }
+    #weather-forecast #forecast-grid .dailyForecast .weekday-low {
+      width: 15%;
+      color: #a5d6ff; }
 
 #weather-content {
   padding: 20px; }
