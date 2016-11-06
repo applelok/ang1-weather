@@ -133,16 +133,16 @@ function getWeatherIconByText(text){
   var img = "";
   switch(text){
       case "Mostly Sunny":
-        img = "../../images/icons/sun.png";
+        img = "images/icons/sun.png";
         break;
       case "Mostly Cloudy":
-        img = "../../images/icons/clouds.png";
+        img = "images/icons/clouds.png";
         break;
       case "Partly Cloudy":
-        img = "../../images/icons/partial_sunny.png";
+        img = "images/icons/partial_sunny.png";
         break;
       default:
-        img = "../../images/icons/sun.png";
+        img = "images/icons/sun.png";
         break;
   }
   return img;
