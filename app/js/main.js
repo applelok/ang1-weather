@@ -79,13 +79,15 @@ app.config(function($provide){
 // });
 
 navBar.controller('navBarController', function($scope){
-  $scope.refresh = function(){
+  $scope.refresh = function(){ 
+    angular.element(document.querySelector('#loading-mask')).addClass("active");
     location.reload();
   };
 });
 weatherForecast.controller('WeatherForecastController', function ($scope, $q, weatherInfoService) {
   weatherInfoService.getApiContentCache();
   $scope.$on('weatherInfoData', function(event, result) {
+    angular.element(document.querySelector("#loading-mask")).removeClass("active");
     var daysForecast = result.forecast;  
     var forecastImg = [];
     angular.forEach(daysForecast, function(dailyForecast){

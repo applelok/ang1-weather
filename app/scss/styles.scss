@@ -145,3 +145,36 @@ $headerWeatherFontSize: 22px;
 #weather-content{
 	padding: 20px;
 }
+
+#retrieve-info{
+	h5{
+		@include MB(0px);
+		
+			@include MT(0px);
+		
+	}
+}
+
+#loading-mask {
+	&.active{
+		display:block;
+		width: 100%;
+	    height: 100%;
+	    position: absolute;
+	    background: rgba(128,128,128,0.85);
+	    top: 0px;
+	    z-index: 1000;
+        #loading-text{
+	    	display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    height: 100%;
+		    width: 100%;
+	    }
+	}
+	  
+     #loading-text{
+     	display: none;
+     }
+	
+}

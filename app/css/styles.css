@@ -86,3 +86,25 @@ body {
 
 #weather-content {
   padding: 20px; }
+
+#retrieve-info h5 {
+  margin-bottom: 0px;
+  margin-top: 0px; }
+
+#loading-mask.active {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(128, 128, 128, 0.85);
+  top: 0px;
+  z-index: 1000; }
+  #loading-mask.active #loading-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%; }
+
+#loading-mask #loading-text {
+  display: none; }
