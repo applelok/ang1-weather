@@ -82,13 +82,15 @@ weatherForecast.controller('WeatherForecastController', function ($scope, $q, we
     var forecastImg = [];
     angular.forEach(daysForecast, function(dailyForecast){
       var day = dailyForecast.day;
-      var img = getWeatherIconByText(text);
+      var img = getWeatherIconByText(dailyForecast.text);
       var weekday = getWeekdayNameByShortForm(day);
-      forecastImg.push({'img': img});
+      var newProps = {'img' : img, 'weekday': weekday};
+            forecastImg.push(newProps);
     });
 
     var forecastList = angular.merge({}, daysForecast, forecastImg);
     $scope.forecastingList = forecastList;
+    console.log(forecastList);
   });
 });
 
@@ -139,11 +141,13 @@ function getWeatherIconByText(text){
     }
 }
 
-function getWeatherIconByText(dayText){
+function getWeekdayNameByShortForm(dayText){
   switch(dayText){
     case "Sun":
       return "Sunday";
     case "Mon":
+      return "Monday";
+    case "Tuesday":
       return "Tuesday";
     case "Wed":
       return "Wednesday";
