@@ -17,10 +17,28 @@
 
     <md-toolbar class="md-hue-2">
       <div class="md-toolbar-tools" style="background: black;">
+      <ul class="cf">
+       
+        <li> 
         <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
         <i class="material-icons" style="color: white;">menu</i>
           <!-- <md-icon md-svg-icon="img/icons/menu.svg"></md-icon> -->
         </md-button>
+            <ul>
+               <li><a href="#" ng-click="changeLoc(2165386)">Kwun Tong</a></li>
+                <li><a href="#" ng-click="changeLoc(2165355)">Tsuen Wan</a></li>
+                 <li><a href="#" ng-click="changeLoc(2165411)">Tuen Mun</a></li>
+                <li><a href="#" ng-click="changeLoc(24703129)">Wan Chai</a></li>
+                <li><a href="#" ng-click="changeLoc(24703137)">Wong Tai Sin</a></li>
+                <li><a href="#" ng-click="changeLoc(2165356)">Sha Tin</a></li>
+                <li><a href="#" ng-click="changeLoc(2165358)">Yuen Long</a></li>
+            </ul>
+            </li>
+    </ul>
+        <!-- <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+        <i class="material-icons" style="color: white;">menu</i> -->
+          <!-- <md-icon md-svg-icon="img/icons/menu.svg"></md-icon> -->
+       <!--  </md-button> -->
         <h2>
           <span></span>
         </h2>
@@ -38,11 +56,12 @@
         </md-button>
       </div>
     </md-toolbar>
-
+    
+</nav>
     </nav>
     <div id="weather-content">
       <div id="weather-header" ng-controller='WeatherHeaderController'>
-            <h1 class="md-display-2 district">Yuen Long</h1>
+            <h1 class="md-display-2 district">{{::districtName}}</h1>
             <h2 class="md-title">Hong Kong</h2>
             
             <div id="weather-desc-outer" class="ib">

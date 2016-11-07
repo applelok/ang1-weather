@@ -29,8 +29,10 @@ app.config(function($provide){
       };
     
       this.getApiContent = function () {
+        var paramValue = (getUrlParameter('woeid').length > 0) ? getUrlParameter('woeid') : "2165358";
+        console.log(paramValue);
         var deferred = $q.defer();
-        var url = "https://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D56824866%20and%20u%3D'c'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+        var url = "https://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D" + paramValue + "%20and%20u%3D'c'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
         // var params = jQuery.param({
         //   soNumber:getUrlParameter("so_number"), 
         // soThreepl:getUrlParameter("so_threepl"),
@@ -45,6 +47,7 @@ app.config(function($provide){
           console.log(response);
           var data = response.data.query.results.channel.item;
           $rootScope.$broadcast('weatherInfoData', data);
+          $rootScope.$broadcast('woeid', paramValue);
           $rootScope.$broadcast('retrieveInfo', response.data.query.created);
           cache.put(cacheId, response.data);
           deferred.resolve(response.results);
@@ -56,33 +59,15 @@ app.config(function($provide){
         };
   });
 
-// app.service('dataService', function($http) {
-//   // consol
-//     // delete $http.defaults.headers.common['X-Requested-With'];
-//     this.getData = function(callbackFunc) {
-//         $http({
-//             method: 'GET',
-//             url: 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(%2756824866%27)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys'
-//             // params: 'limit=10, sort_by=created:desc',
-//             // headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}
-//         }).success(function(data){
-//             // With the data succesfully returned, call our callback
-//             console.log(data.result);
-//             return data.result;
-            
-//         }).error(function(){
-//             alert("error");
-//         });
-
-//      }
-    
-// });
-
 navBar.controller('navBarController', function($scope){
   $scope.refresh = function(){ 
     angular.element(document.querySelector('#loading-mask')).addClass("active");
-    location.reload();
+    var locId = (getUrlParameter('woeid').length > 0) ? getUrlParameter('woeid') : "2165358";
+    location.href="?woeid="+locId;
   };
+  $scope.changeLoc = function(locId){
+    location.href = "?woeid=" + locId;
+  }
 });
 weatherForecast.controller('WeatherForecastController', function ($scope, $q, weatherInfoService) {
   weatherInfoService.getApiContentCache();
@@ -100,7 +85,7 @@ weatherForecast.controller('WeatherForecastController', function ($scope, $q, we
 
     var forecastList = angular.merge({}, daysForecast, forecastImg);
     $scope.forecastingList = forecastList;
-    console.log(forecastList);
+
   });
 });
 
@@ -118,6 +103,12 @@ weatherHeader.controller('WeatherHeaderController', function ($scope, $q, weathe
     $scope.highestDeg = todayCondition.high;
     $scope.lowestDeg = todayCondition.low;
     $scope.currentDeg = condition.temp;
+
+    
+  });
+  $scope.$on('woeid', function(event, result){
+    $scope.districtName = getDistrictName(result);
+    // console.log("districtName="+districtName);
   });
    
 });
@@ -165,4 +156,40 @@ function getWeekdayNameByShortForm(dayText){
     case "Sat":
       return "Saturday";
   } 
+}
+
+function getUrlParameter(sParam){
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    
+    }
+    return "";
+}
+
+function getDistrictName(woeid){
+  switch(woeid){
+    case "2165411":
+      return "Tuen Mun";
+    case "2165358":
+      return "Yuen Long";
+    case "2165398":
+      return "Sham Shui Po";
+    case "2165386":
+      return "Kwun Tong";
+    case "24703137":
+      return "Wong Tai Sin";
+    case "2165356":
+      return "Sha Tin";
+    case "2165355":
+      return "Tsuen Wan";
+  }
 }
