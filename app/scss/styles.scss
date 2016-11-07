@@ -210,12 +210,40 @@ nav li ul a:hover {
     		}
     	}
 	}
+	#weather-tips{
+		min-height:200px;
+	    background-color: #000;
+    	background-color: rgba(0,0,0,.54);
+    	padding: 10px;
+    	margin-left: 10px;
+    	width: 300px;
+    	h4{
+    		margin: 0px;
+    	}	
+    	img{
+    		width: 30px;
+    		height: 30px;
+    		margin-left: 10px;
+			-ms-transform: rotate(30deg); /* IE 9 */
+			-webkit-transform: rotate(30deg); /* Chrome, Safari, Opera */
+			transform: rotate(30deg);
+    	}
+    	p{
+    		font-size: 14px;
+    	}
+		@media  (min-width: 360px) and (max-width:780px) {
+		  width: 300px;
+		  margin-top: 10px;
+		  margin-left: 0px;
+		}
+	}
 }
 #weather-content{
 	padding: 20px;
 }
 
 #retrieve-info{
+	margin-top: 10px;
 	h5{
 		@include MB(0px);
 		@include MT(0px);

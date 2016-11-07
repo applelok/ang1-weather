@@ -150,12 +150,40 @@ nav li ul a:hover {
       width: 15%;
       color: #a5d6ff; }
 
+#weather-forecast #weather-tips {
+  min-height: 200px;
+  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.54);
+  padding: 10px;
+  margin-left: 10px;
+  width: 300px; }
+  #weather-forecast #weather-tips h4 {
+    margin: 0px; }
+  #weather-forecast #weather-tips img {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    -ms-transform: rotate(30deg);
+    /* IE 9 */
+    -webkit-transform: rotate(30deg);
+    /* Chrome, Safari, Opera */
+    transform: rotate(30deg); }
+  #weather-forecast #weather-tips p {
+    font-size: 14px; }
+  @media (min-width: 360px) and (max-width: 780px) {
+    #weather-forecast #weather-tips {
+      width: 300px;
+      margin-top: 10px;
+      margin-left: 0px; } }
+
 #weather-content {
   padding: 20px; }
 
-#retrieve-info h5 {
-  margin-bottom: 0px;
-  margin-top: 0px; }
+#retrieve-info {
+  margin-top: 10px; }
+  #retrieve-info h5 {
+    margin-bottom: 0px;
+    margin-top: 0px; }
 
 #loading-mask.active {
   display: block;

@@ -90,8 +90,8 @@
       </div>
       <div class="clearfix"></div>
       <hr/>
-      <div id="weather-forecast" ng-controller='WeatherForecastController'>
-        <div id="forecast-grid">
+      <div id="weather-forecast" class="ib" ng-controller='WeatherForecastController'>
+        <div id="forecast-grid" class="FL">
           <div class="dailyForecast" ng-repeat="dayForecast in forecastingList">
           <!-- <img src="{{dayForecast.img}}"/> -->
             <div class="weekday-name FL">
@@ -109,11 +109,19 @@
             <hr class="dotted-line"/>
           </div>
 
-        </div>
+        </div> 
      <!--  Enter a text::
           <input ng-model='text.message'>
            <h2>{{text.message}}, Journey just started!</h2>
  -->
+    <div id="weather-tips" class="FL">
+    <div class="ib">
+      <h4 class="FL">Weather Tips in Autumn</h4>
+      <img src="images//icons//autumn.png" width="32" height="32" class="FL" />
+    </div>
+    <hr/>
+      <p>Exposure to cold temperatures can cause serious health problems. Infants and the elderly are particularly at risk, but anyone can be affected. Know how to prevent health problems and what to do if a cold-weather emergency arises. Remember that using space heaters and fireplaces can increase the risk of household fires and carbon monoxide poisoning.</p>
+    </div>
       </div>
 
     <div id="retrieve-info" ng-controller="WeatherRetrieveInfoController">
