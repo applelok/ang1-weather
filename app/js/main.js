@@ -1,8 +1,9 @@
 var weatherHeader = angular.module('weatherHeader', []);
 var weatherForecast = angular.module('weatherForecast', []);
 var weatherRetrieveInfo = angular.module('weatherRetrieveInfo', []);
+var windInfo = angular.module('windInfo', []);
 var navBar = angular.module('navBar', []);
-var app = angular.module('app', ['weatherHeader', 'weatherForecast', 'weatherRetrieveInfo', 'navBar', 'ngMaterial']);
+var app = angular.module('app', ['weatherHeader', 'weatherForecast', 'weatherRetrieveInfo', 'windInfo', 'navBar', 'ngMaterial']);
 
 app.config(function($provide){
     console.log('config');
@@ -32,7 +33,7 @@ app.config(function($provide){
         var paramValue = (getUrlParameter('woeid').length > 0) ? getUrlParameter('woeid') : "2165358";
         console.log(paramValue);
         var deferred = $q.defer();
-        var url = "https://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D" + paramValue + "%20and%20u%3D'c'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+        var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D" + paramValue + "%20and%20u%3D'c'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
         // var params = jQuery.param({
         //   soNumber:getUrlParameter("so_number"), 
         // soThreepl:getUrlParameter("so_threepl"),
@@ -49,6 +50,7 @@ app.config(function($provide){
           $rootScope.$broadcast('weatherInfoData', data);
           $rootScope.$broadcast('woeid', paramValue);
           $rootScope.$broadcast('retrieveInfo', response.data.query.created);
+          $rootScope.$broadcast('windInfo', response.data.query.results.channel.wind);
           cache.put(cacheId, response.data);
           deferred.resolve(response.results);
         }, function(response) {
@@ -118,6 +120,16 @@ weatherForecast.controller('WeatherRetrieveInfoController', function ($scope, $q
   $scope.$on('retrieveInfo', function(event, result) {
     var m = moment(result);
     $scope.infoLastRetrieve = m.format('LLL');
+  });
+});
+
+windInfo.controller('WindInfoController', function ($scope, $q, weatherInfoService){
+  weatherInfoService.getApiContentCache();
+  $scope.$on('windInfo', function(event, result) {
+    // var m = moment(result);
+    // $scope.infoLastRetrieve = m.format('LLL');
+    console.log("Wind = " + result);
+    $scope.speed = result.speed;
   });
 });
 function getWeatherIconByText(text){

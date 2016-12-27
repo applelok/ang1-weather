@@ -114,15 +114,49 @@
           <input ng-model='text.message'>
            <h2>{{text.message}}, Journey just started!</h2>
  -->
-    <div id="weather-tips" class="FL">
-    <div class="ib">
-      <h4 class="FL">Weather Tips in Autumn</h4>
-      <img src="images//icons//autumn.png" width="32" height="32" class="FL" />
-    </div>
-    <hr/>
-      <p>Exposure to cold temperatures can cause serious health problems. Infants and the elderly are particularly at risk, but anyone can be affected. Know how to prevent health problems and what to do if a cold-weather emergency arises. Remember that using space heaters and fireplaces can increase the risk of household fires and carbon monoxide poisoning.</p>
-    </div>
+       
+
+      <div id="weather-wind" class="FL" ng-controller='WindInfoController'>
+        <div class="ib">
+          <h4 class="FL">Wind & Pressure</h4>
+        </div>
+      <hr/>
+        <div id="weather-wind-content">
+          <div id="fladepoleIcon-big" class="FL">
+            <div id="flade">
+              <img src="images//icons//flade.png"  class="FL" />
+            </div>
+            <div id="flade-pole">
+              <img src="images//icons//fladepole.png"  class="FL" />
+            </div>
+          </div>
+           <div id="fladepoleIcon-small" class="FL">
+            <div id="flade">
+              <img src="images//icons//flade.png"  class="FL" />
+            </div>
+            <div id="flade-pole">
+              <img src="images//icons//fladepole.png"  class="FL" />
+            </div>
+          </div>
+          <div id="wind-info">
+            <div>
+              <h5>Wind</h5>
+              <h5>{{speed}}km/h</h5>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <div id="weather-tips" class="FL">
+      <div class="ib">
+        <h4 class="FL">Weather Tips in Autumn</h4>
+        <img src="images//icons//autumn.png" width="32" height="32" class="FL" />
+      </div>
+      <hr/>
+        <p>Exposure to cold temperatures can cause serious health problems. Infants and the elderly are particularly at risk, but anyone can be affected. Know how to prevent health problems and what to do if a cold-weather emergency arises. Remember that using space heaters and fireplaces can increase the risk of household fires and carbon monoxide poisoning.</p>
+      </div>
+
+    </div>
 
     <div id="retrieve-info" ng-controller="WeatherRetrieveInfoController">
       <div class="ib">

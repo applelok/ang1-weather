@@ -48,6 +48,13 @@ $navbarBgColor: black;
 	overflow: auto;
 }
 
+
+//keyframe
+@-webkit-keyframes spin {
+  0% {-webkit-transform: rotate(360deg); }
+  100% { -webkit-transform: rotate(0deg); }
+}
+
 //navbar
 nav ul {
 	-webkit-font-smoothing:antialiased;
@@ -209,6 +216,11 @@ nav li ul a:hover {
     			color: #a5d6ff;
     		}
     	}
+    	@media  (min-width: 360px) and (max-width:780px) {
+		  width: 300px;
+		  margin-bottom: 10px;
+		  margin-left: 0px;
+		}
 	}
 	#weather-tips{
 		min-height:200px;
@@ -233,8 +245,85 @@ nav li ul a:hover {
     	}
 		@media  (min-width: 360px) and (max-width:780px) {
 		  width: 300px;
-		  margin-top: 10px;
+		  margin-bottom: 10px;
 		  margin-left: 0px;
+		}
+
+	}
+
+	#weather-wind{
+		min-height:200px;
+	    background-color: #000;
+    	background-color: rgba(0,0,0,.54);
+    	padding: 10px;
+    	margin-left: 10px;
+    	width: 300px;
+    	h4{
+    		margin: 0px;
+    	}	
+    	#fladepoleIcon-big{
+			position: relative;
+			width: 70px;
+    		#flade{
+    			animation: spin 3s linear 0s infinite reverse;
+				position: absolute;
+				img{
+					width: 70px;
+					height: 70px;
+				}
+    		}
+    		#flade-pole{
+    			position: absolute;
+    			left: 30px;
+    			top: 39px;
+    			img{
+    				width: 9px;
+    				height: 70px;
+    			}
+    		}
+    	}
+    	#fladepoleIcon-small{
+			position: relative;
+			width: 70px;
+    		#flade{
+    			left:50px;
+    			top: 30px;
+    			animation: spin 3s linear 0s infinite reverse;
+				position: absolute;
+				img{
+					width: 50px;
+					height: 50px;
+				}
+    		}
+    		#flade-pole{
+    			position: absolute;
+    			left: 70px;
+    			top: 55px;
+    			img{
+    				width: 9px;
+    				height: 55px;
+    			}
+    		}
+    	}
+    	#wind-info{
+    		position: relative;
+    		div{
+    			position: absolute;
+    			left: 125px;
+    		}
+    	}
+
+    	
+		@media  (min-width: 360px) and (max-width:780px) {
+		  width: 300px;
+		  /*margin-top: 10px;*/
+		  margin-bottom: 10px;
+		  margin-left: 0px;
+		}
+		@media  (min-width: 781px) and (max-width:1000px) {
+		  width: 300px;
+		  margin-bottom: 10px;
+		  /*margin-left: 0px;*/
 		}
 	}
 }
