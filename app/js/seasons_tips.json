@@ -1,0 +1,24 @@
+{
+	"data": [
+		{
+			"season": "Spring",
+			"desc": "adahlhdlashlhdlahdlas",
+			"imgUrl": "images//icons//autumn.png"
+		},
+		{
+			"season": "Summer",
+			"desc": "adahlhdlashlhdlahdlas",
+			"imgUrl": "images//icons//autumn.png"
+		},
+		{
+			"season": "Autumn",
+			"desc": "adahlhdlashlhdlahdlas",
+			"imgUrl": "images//icons//autumn.png"
+		},
+		{
+			"season": "Winter",
+			"desc": "adahlhdlashlhdlahdlas",
+			"imgUrl": "images//icons//autumn.png"
+		}
+	]
+}
